@@ -98,7 +98,7 @@ Attribute  | Options                   | Default             | Description
 `sourceURL`   | *string*                  | ``              | JSON file url
 `replaceTag`    | *string*                  | `abbr`               | html tag used to replace the matching term
 `lookupTagName`   | *string*                     | `p, ul, a`               | Which nodes to search
-`replaceOnce`    | *string*                  | `null`               | Replace once in a textnode?
+`replaceOnce`    | *boolean*                  | `true`               | Replace once in a textnode?
 `replaceClass`    | *string*                  | `glossarizer_replaced`               | Class name of the replaceTag
 `callback`    | *method*                  | `null`               | Completed callback 
 `caseSensitive`    | *boolean*                  | `false`               | Match case sensitive
