@@ -6,7 +6,21 @@
  * 1. Fixed IE8 bug where whitespace get removed - Had to change `abbr` tag to a block element `div`
  */
 
-;(function ($) {
+// Expose plugin as an AMD module if AMD loader is present:
+(function (factory) {
+    "use strict";
+    if (typeof define === 'function' && define.amd) {
+        // AMD. Register as an anonymous module.
+        define(['jquery'], factory);
+    } else if (typeof exports === 'object' && typeof require === 'function') {
+        // Browserify
+        factory(require('jquery'));
+    } else {
+        // Browser globals
+        factory(jQuery);
+    }
+}(function ($) {
+    'use strict';
   /**
    * Defaults
    */
@@ -308,4 +322,4 @@
     }
     return -1
   }
-})(jQuery)
+}));
