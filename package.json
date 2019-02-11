@@ -11,18 +11,18 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PebbleRoad/glossarizer.git"
+    "url": "git+https://github.com/sheppyc/glossarizer"
   },
   "keywords": [
     "glossary",
     "glossarizr"
   ],
-  "author": "Vinay M <rmdort@gmail.com> (http://gitlab.com/rmdort)",
+  "author": "Chris S <me@chrisshepherd.co.uk> (http://gitlab.com/sheppyc)",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/PebbleRoad/glossarizer/issues"
+    "url": "https://github.com/sheppyc/glossarizer/issues"
   },
-  "homepage": "https://github.com/PebbleRoad/glossarizer#readme",
+  "homepage": "https://github.com/sheppyc/glossarizer#readme",
   "dependencies": {
     "jquery": "^3.2.1"
   }
