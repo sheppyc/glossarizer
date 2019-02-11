@@ -19,7 +19,7 @@
             if( !tip || tip == '' )
                 return false;
      
-            target.removeAttr( 'title' );
+            //target.removeAttr( 'title' );
             tooltip.css( 'opacity', 0 )
                    .html( tip )
                    .appendTo( 'body' );

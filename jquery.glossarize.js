@@ -22,19 +22,20 @@
 }(function ($) {
     'use strict';
   /**
-   * Defaults
+   * DefaultssourceArray
    */
 
   var pluginName = 'glossarizer',
     defaults = {
       sourceURL: '', /* URL of the JSON file with format {"term": "", "description": ""} */
+      sourceArray: [],
       replaceTag: 'abbr', /* Matching words will be wrapped with abbr tags by default */
       lookupTagName: 'p, ul, a, div', /* Lookup in either paragraphs or lists. Do not replace in headings */
       callback: null, /* Callback once all tags are replaced: Call or tooltip or anything you like */
       replaceOnce: false, /* Replace only once in a TextNode */
       replaceClass: 'glossarizer_replaced',
       caseSensitive: false,
-      exactMatch: false
+      exactMatch: true
   }
 
   /**
@@ -71,9 +72,18 @@
 
     /* Fetch glossary JSON */
 
-    $.getJSON(this.options.sourceURL).then(function (data) {
-      base.glossary = data
+    if (this.options.sourceArray) {
+      base.glossary = this.options.sourceArray;
+      getAllTerms();
+    }
+    else {
+      $.getJSON(this.options.sourceURL).then(function (data) {
+        base.glossary = data;
+        getAllTerms();
+      });
+    }
 
+    function getAllTerms() {
       if (!base.glossary.length || base.glossary.length == 0) return
 
       /**
@@ -101,12 +111,14 @@
         }
       }
 
+      console.log(base.terms);
       /**
        * Wrap terms
        */
 
-      base.wrapTerms()
-    })
+      base.wrapTerms();
+    }
+
   }
 
   /**
@@ -115,6 +127,7 @@
   Glossarizer.prototype = {
     getDescription: function (term) {
       var regex = new RegExp('(\,|\s*)' + this.clean(term) + '\\s*|\\,$', 'i')
+      console.log(regex);
 
       /**
        * Matches
@@ -129,6 +142,7 @@
             return this.glossary[i].description.replace(/\"/gi, '&quot;')
           }
         } else {
+          console.log(this.glossary[i].term);
           if (this.glossary[i].term.match(regex)) {
             return this.glossary[i].description.replace(/\"/gi, '&quot;')
           }
@@ -197,10 +211,11 @@
         var temp = document.createElement('div'),
           data = node.data
 
-        var re = new RegExp('(?:^|\\b)(' + this.cleanedTerms + ')(?!\\w)', base.regexOption),
+        var re = new RegExp('(?:^|\\b)(' + this.cleanedTerms + ')(?!\\w)'),
           reEx = new RegExp('(?:^|\\b)(' + this.excludedTerms + ')(?!\\w)', base.regexOption)
 
-        if (re.test(data)) {
+        if (re.test(String(data))) {
+
           var excl = reEx.exec(data)
 
           data = data.replace(re, function (match, item , offset, string) {
