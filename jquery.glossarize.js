@@ -111,7 +111,6 @@
         }
       }
 
-      console.log(base.terms);
       /**
        * Wrap terms
        */
@@ -127,7 +126,6 @@
   Glossarizer.prototype = {
     getDescription: function (term) {
       var regex = new RegExp('(\,|\s*)' + this.clean(term) + '\\s*|\\,$', 'i')
-      console.log(regex);
 
       /**
        * Matches
@@ -142,7 +140,6 @@
             return this.glossary[i].description.replace(/\"/gi, '&quot;')
           }
         } else {
-          console.log(this.glossary[i].term);
           if (this.glossary[i].term.match(regex)) {
             return this.glossary[i].description.replace(/\"/gi, '&quot;')
           }
