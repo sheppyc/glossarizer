@@ -237,10 +237,10 @@
                 if (exid <= id && id <= exl) {
                   return match
                 } else {
-                  return '<' + base.options.replaceTag + ' class="' + base.options.replaceClass + '" title="' + base.getDescription(match) + '" onmouseover="title=">' + match + '</' + base.options.replaceTag + '>'
+                  return '<' + base.options.replaceTag + ' class="' + base.options.replaceClass + '" data-title="' + base.getDescription(match) + '" >' + match + '</' + base.options.replaceTag + '>'
                 }
               } else {
-                return '<' + base.options.replaceTag + ' class="' + base.options.replaceClass + '" title="' + base.getDescription(match) + '" onmouseover="title=">' + match + '</' + base.options.replaceTag + '>'
+                return '<' + base.options.replaceTag + ' class="' + base.options.replaceClass + '" data-title="' + base.getDescription(match) + '" >' + match + '</' + base.options.replaceTag + '>'
               }
             }
           })

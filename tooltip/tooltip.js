@@ -13,7 +13,7 @@
         targets.bind( 'mouseenter', function()
         {
             target  = $( this );
-            tip     = target.attr( 'title' );
+            tip     = target.attr( 'data-title' );
             tooltip = $( '<div id="tooltip"></div>' );
      
             if( !tip || tip == '' )
@@ -72,7 +72,7 @@
                     $( this ).remove();
                 });
      
-                target.attr( 'title', tip );
+                target.attr( 'data-title', tip );
             };
      
             target.bind( 'mouseleave', remove_tooltip );
