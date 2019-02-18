@@ -30,7 +30,7 @@
       sourceURL: '', /* URL of the JSON file with format {"term": "", "description": ""} */
       sourceArray: [],
       replaceTag: 'abbr', /* Matching words will be wrapped with abbr tags by default */
-      lookupTagName: 'p, ul, a, div', /* Lookup in either paragraphs or lists. Do not replace in headings */
+      lookupTagName: 'p, ul, div:not(.ui-select-match)', /* Lookup in either paragraphs or lists. Do not replace in headings */
       callback: null, /* Callback once all tags are replaced: Call or tooltip or anything you like */
       replaceOnce: false, /* Replace only once in a TextNode */
       replaceClass: 'glossarizer_replaced',
@@ -180,7 +180,9 @@
       var next,
         base = this
 
-      if (node.nodeType === 1) {
+      var hasClass = $(node).hasClass("ui-select-match");
+
+      if ((node.nodeType === 1) && (hasClass === false)) {
         /*
          Element Node
          */
@@ -200,7 +202,7 @@
             }
           } while (node = next)
         }
-      } else if (node.nodeType === 3) {
+      } else if ((node.nodeType === 3) && (hasClass === false)) {
         /*
          Text Node
          */
