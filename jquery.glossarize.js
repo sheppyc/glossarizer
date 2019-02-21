@@ -106,7 +106,7 @@
 
             // plurals
 
-            base.terms.push(trimmed+"s");
+            //base.terms.push(trimmed+"s");
           } else {
             /* Excluded terms array */
 
@@ -141,6 +141,9 @@
       for (var i = 0; i < this.glossary.length; i++) {
         if (this.options.exactMatch) {
           if (this.glossary[i].term.toLowerCase() == this.clean(term).toLowerCase()) {
+            return this.glossary[i].description.replace(/\"/gi, '&quot;')
+          }
+          if (this.glossary[i].term.toLowerCase()+'s' == this.clean(term).toLowerCase()) {
             return this.glossary[i].description.replace(/\"/gi, '&quot;')
           }
         } else {
@@ -214,7 +217,7 @@
         var temp = document.createElement('div'),
           data = node.data
 
-        var re = new RegExp('(?:^|\\b)(' + this.cleanedTerms + ')(?!\\w)', base.regexOption),
+        var re = new RegExp('(?:^|\\b)(' + this.cleanedTerms + ')s?(?!\\w)', base.regexOption),
           reEx = new RegExp('(?:^|\\b)(' + this.excludedTerms + ')(?!\\w)', base.regexOption)
 
           var str = String(data).toLowerCase();
