@@ -224,9 +224,6 @@
 
         if (re.test(String(data))) {
 
-          console.log(re);
-          console.log(str);
-
           var excl = reEx.exec(data)
 
           data = data.replace(re, function (match, item , offset, string) {
@@ -235,8 +232,6 @@
             }
 
             base.replaced.push(match)
-
-            console.log(base.clean(match));
 
             var ir = new RegExp('(?:^|\\b)' + base.clean(match) + '(?!\\w)'),
               result = ir.exec(data)
