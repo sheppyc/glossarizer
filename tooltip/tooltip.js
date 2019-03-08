@@ -9,7 +9,14 @@
             target  = false,
             tooltip = false,
             title   = false;
+
+        // Remove existing tooltips if exist.
+        $("#tooltip").remove();
+
+        // Unbind any existing mouseevents from tooltips.
+        targets.unbind()
      
+        // Create mouseenter binds
         targets.bind( 'mouseenter', function()
         {
             target  = $( this );
@@ -67,7 +74,7 @@
      
             var remove_tooltip = function()
             {
-                tooltip.animate( { top: '-=10', opacity: 0 }, 50, function()
+                tooltip.animate( { top: '-=10', opacity: 0 }, 10, function()
                 {
                     $( this ).remove();
                 });
