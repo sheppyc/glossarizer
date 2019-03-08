@@ -144,7 +144,6 @@
           var split_terms = this.glossary[i].term.split(',');
 
           for (var j = 0; j < split_terms.length ; j++) {
-            console.log("checking: "+split_terms[j]);
 
             if (split_terms[j].trim().toLowerCase() == this.clean(term).toLowerCase()) {
               return this.glossary[i].description.replace(/\"/gi, '&quot;')
