@@ -140,11 +140,19 @@
 
       for (var i = 0; i < this.glossary.length; i++) {
         if (this.options.exactMatch) {
-          if (this.glossary[i].term.toLowerCase() == this.clean(term).toLowerCase()) {
-            return this.glossary[i].description.replace(/\"/gi, '&quot;')
-          }
-          if (this.glossary[i].term.toLowerCase()+'s' == this.clean(term).toLowerCase()) {
-            return this.glossary[i].description.replace(/\"/gi, '&quot;')
+          // split the term for comma-separated terms and cycle check.
+          var split_terms = this.glossary[i].term.split(',');
+
+          for (var j = 0; j < split_terms.length ; j++) {
+            console.log("checking: "+split_terms[j]);
+
+            if (split_terms[j].trim().toLowerCase() == this.clean(term).toLowerCase()) {
+              return this.glossary[i].description.replace(/\"/gi, '&quot;')
+            }
+            if (split_terms[j].trim().toLowerCase()+'s' == this.clean(term).toLowerCase()) {
+              return this.glossary[i].description.replace(/\"/gi, '&quot;')
+            }
+
           }
         } else {
           if (this.glossary[i].term.match(regex)) {
@@ -217,8 +225,8 @@
         var temp = document.createElement('div'),
           data = node.data
 
-        var re = new RegExp('(?:^|\\b)(' + this.cleanedTerms + ')s?(?!\\w)', base.regexOption),
-          reEx = new RegExp('(?:^|\\b)(' + this.excludedTerms + ')(?!\\w)', base.regexOption)
+        var re = new RegExp('(?:^|\\b)(' + this.cleanedTerms + '*?)s?(?!\\w)', base.regexOption);
+        var reEx = new RegExp('(?:^|\\b)(' + this.excludedTerms + ')(?!\\w)', base.regexOption);
 
           var str = String(data).toLowerCase();
 
