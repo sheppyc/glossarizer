@@ -30,7 +30,7 @@
       sourceURL: '', /* URL of the JSON file with format {"term": "", "description": ""} */
       sourceArray: [],
       replaceTag: 'abbr', /* Matching words will be wrapped with abbr tags by default */
-      lookupTagName: 'p, span, ul, li, div.list-group, div:not(.ui-select-match), div:not(.form-group)', /* Lookup in either paragraphs or lists. Do not replace in headings */
+      lookupTagName: 'p, span, ul, li, div.list-group, div:not(.ui-select-match), div:not(.form-group), tr', /* Lookup in either paragraphs or lists. Do not replace in headings */
       callback: null, /* Callback once all tags are replaced: Call or tooltip or anything you like */
       replaceOnce: false, /* Replace only once in a TextNode */
       replaceClass: 'glossarizer_replaced',
