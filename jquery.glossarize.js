@@ -91,27 +91,22 @@
        */
 
       for (var i = 0; i < base.glossary.length; i++) {
-        var terms = base.glossary[i].term.split(',')
+        var term = base.glossary[i].term
 
-        for (var j = 0; j < terms.length; j++) {
-          /* Trim */
+        /* Trim */
 
-          var trimmed = terms[j].replace(/^\s+|\s+$/g, ''),
-            isExclusion = trimmed.indexOf('!')
+        var trimmed = term.replace(/^\s+|\s+$/g, ''),
+          isExclusion = trimmed.indexOf('!')
 
-          if (isExclusion == -1 || isExclusion != 0) {
-            /* Glossary terms array */
+        if (isExclusion == -1 || isExclusion != 0) {
+          /* Glossary terms array */
 
-            base.terms.push(trimmed)
+          base.terms.push(trimmed)
 
-            // plurals
+        } else {
+          /* Excluded terms array */
 
-            //base.terms.push(trimmed+"s");
-          } else {
-            /* Excluded terms array */
-
-            base.excludes.push(trimmed.substr(1))
-          }
+          base.excludes.push(trimmed.substr(1))
         }
       }
 
@@ -140,19 +135,15 @@
 
       for (var i = 0; i < this.glossary.length; i++) {
         if (this.options.exactMatch) {
-          // split the term for comma-separated terms and cycle check.
-          var split_terms = this.glossary[i].term.split(',');
+          var current_term = this.glossary[i].term;
 
-          for (var j = 0; j < split_terms.length ; j++) {
-
-            if (split_terms[j].trim().toLowerCase() == this.clean(term).toLowerCase()) {
-              return this.glossary[i].description.replace(/\"/gi, '&quot;')
-            }
-            if (split_terms[j].trim().toLowerCase()+'s' == this.clean(term).toLowerCase()) {
-              return this.glossary[i].description.replace(/\"/gi, '&quot;')
-            }
-
+          if (current_term.trim().toLowerCase() == this.clean(term).toLowerCase()) {
+            return this.glossary[i].description.replace(/\"/gi, '&quot;')
           }
+          if (current_term.trim().toLowerCase()+'s' == this.clean(term).toLowerCase()) {
+            return this.glossary[i].description.replace(/\"/gi, '&quot;')
+          }
+
         } else {
           if (this.glossary[i].term.match(regex)) {
             return this.glossary[i].description.replace(/\"/gi, '&quot;')

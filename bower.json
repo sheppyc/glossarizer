@@ -1,9 +1,10 @@
 {
   "name": "glossarizer",
-  "version": "1.5",
-  "homepage": "https://github.com/PebbleRoad/glossarizer",
+  "version": "3.5",
+  "homepage": "https://github.com/sheppyc/glossarizer",
   "authors": [
-    "Vinay <rmdort@gmail.com>"
+    "Vinay <rmdort@gmail.com>",
+    "Chris <chris.shepherd@growzz.com>"
   ],
   "description": "A small jquery plugin that automatically marks up glossary terms on a page. The glossary terms can be read from an external json file. When users hover over the link (dashed line), they get to see the glossary definition as a tooltip.",
   "license": "MIT",
@@ -13,5 +14,7 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {
+  }
 }
