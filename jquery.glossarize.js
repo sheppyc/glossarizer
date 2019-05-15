@@ -35,7 +35,8 @@
       replaceOnce: false, /* Replace only once in a TextNode */
       replaceClass: 'glossarizer_replaced',
       caseSensitive: false,
-      exactMatch: true
+      exactMatch: true,
+      termName: 'term'
   }
 
   /**
@@ -91,7 +92,7 @@
        */
 
       for (var i = 0; i < base.glossary.length; i++) {
-        var term = base.glossary[i].term
+        var term = base.glossary[i][base.options.termName]
 
         /* Trim */
 
@@ -135,7 +136,7 @@
 
       for (var i = 0; i < this.glossary.length; i++) {
         if (this.options.exactMatch) {
-          var current_term = this.glossary[i].term;
+          var current_term = this.glossary[i][this.options.termName];
 
           if (current_term.trim().toLowerCase() == this.clean(term).toLowerCase()) {
             return this.glossary[i].description.replace(/\"/gi, '&quot;')
@@ -145,7 +146,7 @@
           }
 
         } else {
-          if (this.glossary[i].term.match(regex)) {
+          if (this.glossary[i][this.options.termName].match(regex)) {
             return this.glossary[i].description.replace(/\"/gi, '&quot;')
           }
         }
